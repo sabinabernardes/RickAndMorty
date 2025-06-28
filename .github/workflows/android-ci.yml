@@ -26,20 +26,4 @@ jobs:
         with:
           path: |
             ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-          restore-keys: |
-            gradle-${{ runner.os }}-
-
-      - name: Build com Gradle
-        run: ./gradlew assembleDebug
-
-      - name: Rodar testes
-        run: ./gradlew testDebugUnitTest
-
-      - name: Upload de reports de teste
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: '**/build/reports/tests/testDebugUnitTest'
+            ~/.

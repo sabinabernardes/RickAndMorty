@@ -2,22 +2,9 @@
 .DS_Store
 Thumbs.db
 
-# Android
-.gradle/
-.idea/
-local.properties
-*.iml
-*.apk
-*.ap_
-*.aab
-build/
-captures/
-output.json
-
 # Kotlin
 *.class
 *.log
-*.jar
 *.kts~
 *.swp
 
