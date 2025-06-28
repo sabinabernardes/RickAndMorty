@@ -6,13 +6,17 @@ Este projeto é uma reestruturação/refactor do app original [BinaRickyMorty](h
 
 ## 🔍 Visão Geral
 
-App Android em Jetpack Compose + Clean Architecture para exibir personagens da série Rick and Morty. Permite:
+Este app explora conceitos modernos do ecossistema Android, com destaque para:
 
-- Listagem paginada de personagens
-- Detalhes de personagem
-- Busca por nome
-- Tratamento de estados (loading, error, empty)
-- Suporte a tema claro/escuro
+- ✅ Composição 100% declarativa com **Jetpack Compose**
+- 🧠 Organização por **camadas e módulos** (infra, domain, features)
+- 💉 **Koin** para injeção de dependência
+- 🔁 Paginação eficiente com **Paging 3**
+- 🔌 Consumo de API com **Retrofit + Kotlin Serialization**
+- ✅ Testes automatizados (unitários e instrumentados)
+- ☁️ Modularização por feature para ganho em build time
+- 🌗 Suporte completo a tema claro/escuro
+- 👩‍🔬 Navegação desacoplada com gerenciamento de estados
 
 ---
 
@@ -22,14 +26,43 @@ Este projeto foi pensado para ser modular, escalável e fácil de manter, seguin
 
 ### 📦 Organização dos Módulos
 
+O projeto segue a Clean Architecture, separando as camadas de forma **independente e testável**:
+
 ```
-:app                       # App launcher
-:core:designsystem         # Tokens, componentes visuais, tema claro/escuro
-:core:navigation           # Gerenciamento de rotas e destinos
-:core:playground           # Tela interna para testes visuais dos componentes
-:features:home             # Tela principal (home) com Clean Architecture
-:features:detail           # Tela de detalhe com navegação via argumento
+features/
+├── home/
+│   ├── data/
+│   ├── domain/
+│   └── presentation/
+├── details/
+│   ├── data/
+│   ├── domain/
+│   └── presentation/
+core/
+├── network/
+├── designsystem/
+├── playground/
+├── ui/
+├── navigation/
 ```
+
+- `core/`: módulos reutilizáveis e agnósticos à feature  
+- `features/`: cada funcionalidade isolada com data/domain/presentation  
+- Navegação desacoplada por rotas nomeadas ou seladas  
+- Compose Preview para validação visual
+
+---
+## 🧰 Tech Stack
+
+| Tecnologia          | Descrição                           |
+|---------------------|-------------------------------------|
+| 🧬 Kotlin            | Linguagem principal                 |
+| 🎨 Jetpack Compose  | UI moderna e reativa                |
+| 📦 Koin             | Injeção de dependência              |
+| 📡 Retrofit         | Requisições HTTP                    |
+| 🔄 Paging 3         | Paginação eficiente                 |
+| 🧪 JUnit, MockK     | Testes unitários                    |
+| 🧪 Compose Testing  | Testes instrumentados               |
 
 ---
 
@@ -179,20 +212,86 @@ Abaixo estão listadas as etapas do projeto junto com suas respectivas branches,
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Como rodar o projeto
 
-1. Faça clone:
-   ```bash
-   git clone https://github.com/sabinabernardes/RickyAndMorty.git
-   ```
-2. Abra no Android Studio (recomenda-se 2024.3 ou superior)
-3. Execute em emulador ou dispositivo real
-4. Rode testes unitários via `./gradlew test`
+1. Clone o repositório:
+```bash
+git clone https://github.com/sabinabernardes/BinaRickAndMorty.git
+```
 
+2. Abra no Android Studio Hedgehog+  
+3. Rode com o **Emulador API 33+ ou dispositivo real**
+
+> 🔐 Este projeto não requer chaves de API — usa uma API pública.
+
+---
+
+## 🧪 Testes
+
+- Para rodar os testes unitários:
+```bash
+./gradlew test
+```
+
+- Para rodar os testes instrumentados:
+```bash
+./gradlew connectedAndroidTest
+```
+
+Testes estão organizados por camada.  
+Cobertura de testes pode ser gerada via:
+```bash
+./gradlew jacocoTestReport
+```
+
+---
+
+## 🤖 CI/CD
+
+> ⚙️ Pipeline configurado com **GitHub Actions**:
+
+- Build automático a cada push
+- Execução de testes unitários
+- Checagem de lint
+- [ ] *(se aplicável)* Deploy para Firebase App Distribution
+
+---
 **Requisitos**:  
 - Min SDK 26  
 - Target SDK 35  
 - JDK 17
+
+---
+---
+
+## 📱 Funcionalidades
+
+- 🔍 Buscar personagens por nome
+- 📋 Listagem paginada com scroll infinito
+- 💾 Exibição de detalhes de personagem
+- 🌕 Suporte a tema escuro
+- 🚫 Tratamento de erros (timeout, sem internet, etc)
+- ✨ Navegação entre telas com animação
+
+---
+
+## 📸 Screenshots
+
+| Home                       | Detalhe do Personagem           |
+|----------------------------|----------------------------------|
+| ![](docs/screenshot_home.png) | ![](docs/screenshot_detail.png) |
+
+---
+
+## 🧠 Decisões Técnicas
+
+| Tema                     | Justificativa                                                                 |
+|--------------------------|------------------------------------------------------------------------------|
+| `Paging 3`               | Evita múltiplas requisições e melhora performance de listas                  |
+| `Compose`                | Facilita previews e reatividade da UI                                        |
+| `Kotlin Serialization`   | Evita reflection e é mais leve que Moshi/Gson                                |
+| Modularização por feature| Reduz acoplamento e melhora testabilidade/tempo de build                    |
+| Navegação via route      | Permite extensibilidade e modularização                                     |
 
 ---
 
