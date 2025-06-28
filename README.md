@@ -33,137 +33,149 @@ Este projeto foi pensado para ser modular, escalável e fácil de manter, seguin
 
 ---
 
-## 🏗️ Etapas de Implementação
+## 🏗️ Qualidade do Projeto
+---
+<details>
+<summary><strong>🥇 Premissas Técnicas de Qualidade</strong></summary>
 
-### [Infraestrutura]
+<br/>
 
-#### ✅ 001 - Setup inicial
-- Estrutura base do projeto Android
-- Criação da pasta `.github/workflows` com GitHub Actions (CI)
-- Adição de Pull Request Template 
+- 🧱 **Arquitetura modular baseada em Clean Architecture**  
+  Separação em camadas `data`, `domain` e `presentation`, com dependências unidirecionais e acoplamento mínimo entre módulos.
 
-#### ✅ 002 - Design System
-- Módulo `:core:designsystem` com tokens de cor, tipografia e espaçamento
-- Suporte a modo claro/escuro com Material3
-- Criação de componentes visuais reutilizáveis
-- Módulo `:core:playground` para testes visuais (debug only)
-- Testes instrumentados com `ComposeTestRule`
+- 🧩 **Interface declarativa com Jetpack Compose**  
+  Toda a camada de UI é construída exclusivamente com Compose, evitando uso misto com Views ou XML. Gerenciamento explícito de estado e reatividade controlada.
 
-#### ✅ 003 - Navegação
-- Módulo `:core:navigation`
+- 🎨 **Design System centralizado e orientado a tokens**  
+  Todos os componentes visuais são implementados no módulo `:core:designsystem`, com base em tokens de cor, espaçamento e tipografia. Nenhum componente é recriado em features.
+
+- 🌗 **Suporte nativo a temas claro e escuro**  
+  O tema é adaptável ao sistema operacional, aplicado via `MaterialTheme`, e validado por meio de tela de playground visual.
+
+- 🧭 **Navegação desacoplada via módulo dedicado**  
+  A navegação é centralizada no módulo `:core:navigation`, utilizando rotas nomeadas ou sealed classes para garantir escalabilidade e segurança de tipo.
+
+- 🧪 **Cobertura de testes como requisito de entrega**  
+  Todas as camadas possuem testes unitários e/ou instrumentados. Pull requests devem conter validação automatizada e evidência de cobertura mínima.
+
+- ⚙️ **Integração contínua automatizada (CI)**  
+  Workflows via GitHub Actions executam build, lint e testes automaticamente em cada pull request. Falhas bloqueiam merge.
+
+- 📝 **Commits e MRs vinculados a tarefas rastreáveis**  
+  As mensagens de commit seguem convenções definidas. Todo merge request é associado a uma tarefa técnica clara e documentada.
+
+- 🧪 **Playground para validação isolada de UI**  
+  Cada componente visual é validado de forma independente no módulo `:core:playground` antes de ser integrado em features.
+
+- 📚 **Documentação versionada e obrigatória**  
+  README, templates e anotações técnicas são tratados como parte do código-fonte. Toda alteração relevante exige documentação correspondente.
+
+</details>
+
+## 🏗️ Etapas de Implementação + Organização de Branches
+
+Abaixo estão listadas as etapas do projeto junto com suas respectivas branches, organizadas por contexto e granularidade. Isso facilita rastreamento técnico, controle de versão e revisão.
+
+---
+
+<details>
+<summary><strong>Infraestrutura</strong></summary>
+
+<br/>
+
+### ✅ 001 - Setup inicial (`infra/001-project-setup`)
+- Criação do projeto Android
+- Configuração inicial do Gradle e arquivos base (`README`, `.gitignore`)
+
+### ✅ 002 - GitHub Actions (`infra/002-github-actions`)
+- Configuração do CI com GitHub Actions (build, lint, test)
+
+### ✅ 003 - Templates de PR e Issues (`infra/003-pr-templates`)
+- Adição de Pull Request e Issue templates na pasta `.github`
+
+### ✅ 004 - Navegação (`infra/004-core-navigation-module`)
+- Criação do módulo `:core:navigation`
 - Abstrações para destinos (sealed classes ou rotas nomeadas)
 - Suporte a argumentos entre telas
 - Documentação dos ganhos (isolamento, preview, testes)
 
----
-
-### [Features]
-
-#### ✅ 001 - Módulo de Home
-- Módulo `:features:home` com camadas `data`, `domain`, `presentation`
-- Tela Compose consumindo dados fictícios
-- Navegação para a tela de detalhes
-- Testes unitários e de UI por camada
-
-#### ✅ 002 - Módulo de Detalhes
-- Módulo `:features:detail` com mesmo padrão do Home
-- Recebimento de argumentos via navArgs
-- Reuso de componentes do design system
-- Cobertura de testes por camada
-
----
-
-## 📋 Organização Detalhada de Branches e Tarefas
-
-O projeto é organizado com branches numeradas por escopo técnico, camada e contexto de entrega. Essa granularidade facilita o rastreio, revisão e merge de partes específicas da base.
-
----
-
-### 🛠️ Infraestrutura
-
-#### `infra/001-project-setup`
-- Criação do projeto Android
-- Configuração inicial do Gradle e arquivos base (`README`, `.gitignore`)
-
-#### `infra/002-github-actions`
-- Configuração do CI com GitHub Actions (build, lint, test)
-
-#### `infra/003-pr-templates`
-- Adição de Pull Request e Issue templates na pasta `.github`
-
-#### `infra/004-core-navigation-module`
-- Criação do módulo `:core:navigation`
-- Definição de estrutura base de rotas
-
-#### `infra/005-core-designsystem-module`
+### ✅ 005 - Design System Base (`infra/005-core-designsystem-module`)
 - Criação do módulo `:core:designsystem`
 
-#### `infra/006-designsystem-tokens`
-- Implementação dos tokens: colors, spacing, typography
+### ✅ 006 - Tokens (`infra/006-designsystem-tokens`)
+- Definição de tokens de cor, tipografia e espaçamento
 
-#### `infra/007-designsystem-theme`
-- Implementação do tema claro/escuro usando MaterialTheme
+### ✅ 007 - Tema claro/escuro (`infra/007-designsystem-theme`)
+- Suporte a modo claro/escuro com MaterialTheme
 
-#### `infra/008-designsystem-components`
+### ✅ 008 - Componentes visuais (`infra/008-designsystem-components`)
 - Criação dos primeiros componentes reutilizáveis (Botão, TextField, etc.)
 
-#### `infra/009-playground-setup`
-- Criação do módulo `:core:playground`
-- Tela para visualização dos componentes
+### ✅ 009 - Playground (`infra/009-playground-setup`)
+- Módulo `:core:playground` para testes visuais (debug only)
 
-#### `infra/010-ui-tests-setup`
-- Setup de testes instrumentados com `ComposeTestRule`
-- Testes visuais para Design System
+### ✅ 010 - Testes instrumentados (`infra/010-ui-tests-setup`)
+- Setup de testes com `ComposeTestRule`
+- Testes visuais dos componentes
+
+</details>
 
 ---
 
-### 🧩 Features
+<details>
+<summary><strong>Features</strong></summary>
 
-#### 🏠 Home
+<br/>
 
-##### `feature/home/001-structure`
+### 🏠 Módulo de Home
+
+#### ✅ Estrutura inicial (`feature/home/001-structure`)
 - Criação do módulo `:features:home`
 - Separação das camadas: `data`, `domain`, `presentation`
 
-##### `feature/home/002-presentation-layer`
+#### ✅ UI e ViewModel (`feature/home/002-presentation-layer`)
 - Composable da tela inicial
 - ViewModel + UiState
 
-##### `feature/home/003-domain-layer`
-- Casos de uso e modelos da camada de negócio
+#### ✅ Casos de uso (`feature/home/003-domain-layer`)
+- Lógica de negócio e abstrações
 
-##### `feature/home/004-data-layer`
-- Repositório, fake source/local data, DTOs
+#### ✅ Repositório e dados (`feature/home/004-data-layer`)
+- Fonte de dados fake/local, DTOs, mappers
 
-##### `feature/home/005-tests`
-- Testes unitários e de UI por camada
+#### ✅ Testes (`feature/home/005-tests`)
+- Testes unitários por camada
+- Testes de UI com Compose
 
-##### `feature/home/006-navigation`
-- Integração da tela com o NavGraph
+#### ✅ Navegação (`feature/home/006-navigation`)
+- Integração da Home com NavGraph
 - Envio de ID para próxima tela
 
 ---
 
-#### 📄 Detail
+### 📄 Módulo de Detalhes
 
-##### `feature/detail/001-structure`
-- Módulo `:features:detail` com camadas Clean
+#### ✅ Estrutura inicial (`feature/detail/001-structure`)
+- Criação do módulo `:features:detail` com base Clean
 
-##### `feature/detail/002-presentation-layer`
+#### ✅ UI e estado (`feature/detail/002-presentation-layer`)
 - Composable da tela de detalhes
-- ViewModel + estado com argumento
+- ViewModel + argumentos
 
-##### `feature/detail/003-domain-layer`
-- Casos de uso, modelos, interfaces
+#### ✅ Casos de uso (`feature/detail/003-domain-layer`)
+- Lógica de negócio da tela de detalhe
 
-##### `feature/detail/004-data-layer`
-- Fonte de dados, mapeamento de dados, fake API
+#### ✅ Repositório e dados (`feature/detail/004-data-layer`)
+- Fonte de dados, mapeamentos, simulação de API
 
-##### `feature/detail/005-tests`
-- Testes unitários e de UI
+#### ✅ Testes (`feature/detail/005-tests`)
+- Unitários por camada
+- UI test para fluxo principal
 
-##### `feature/detail/006-navigation`
-- Recebimento e uso do argumento de navegação
+#### ✅ Navegação (`feature/detail/006-navigation`)
+- Recebimento e uso do argumento de navegação via navArgs
+
+</details>
 
 ---
 
