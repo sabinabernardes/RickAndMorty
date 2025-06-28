@@ -290,10 +290,11 @@ Comandos:
 
 | Home                       | Detalhe do Personagem           |
 |----------------------------|----------------------------------|
-| ![Captura de Tela 2025-06-28 às 13 53 36](https://github.com/user-attachments/assets/2020e3d5-6418-4527-a848-68e0d1573d20)
- |
-|  ![Captura de Tela 2025-06-28 às 13 53 46](https://github.com/user-attachments/assets/6b37018e-668b-4bb3-89b6-e731558c4b38)
-|
+| ![Captura de Tela 2025-06-28 às 13 53 36](https://github.com/user-attachments/assets/2020e3d5-6418-4527-a848-68e0d1573d20)|  ![Captura de Tela 2025-06-28 às 13 53 46](https://github.com/user-attachments/assets/6b37018e-668b-4bb3-89b6-e731558c4b38)|
+
+| Modulo Playground tema Claro                | Modulo Playground tema Claro           |
+|----------------------------|----------------------------------|
+| ![Captura de Tela 2025-06-28 às 14 01 43](https://github.com/user-attachments/assets/3673c152-f2ba-465c-b829-ddda8c1e5335)| ![Captura de Tela 2025-06-28 às 14 01 52](https://github.com/user-attachments/assets/6e60fd43-58b6-4667-bc8c-7abae7adf1fb)|
 
 ---
 
