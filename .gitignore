@@ -1,15 +1,62 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+# Sistema
 .DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+Thumbs.db
+
+# Android
+.gradle/
+.idea/
 local.properties
+*.iml
+*.apk
+*.ap_
+*.aab
+build/
+captures/
+output.json
+
+# Kotlin
+*.class
+*.log
+*.jar
+*.kts~
+*.swp
+
+# Arquivos do Android Studio
+.cxx/
+.externalNativeBuild/
+.navigation/
+*.iws
+*.ipr
+
+# Arquivos de cache
+.cache/
+*.tmp
+*.temp
+
+# Testes e relatórios
+/test-results/
+/test-output/
+*.ec
+*.hprof
+
+# Configs locais
+.vscode/
+*.keystore
+*.jks
+
+# Jetpack Compose Compiler
+compose-compiler-report/
+
+# Git hooks (se não for versionar)
+.husky/
+
+# Fastlane (se usa e não versiona)
+fastlane/report.xml
+fastlane/screenshots
+fastlane/metadata
+
+# Firebase (se for chave local)
+google-services.json
+
+# Outras libs
+chucker_temp/
