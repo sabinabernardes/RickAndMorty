@@ -29,6 +29,7 @@ Este projeto foi pensado para ser modular, escalável e fácil de manter, seguin
 O projeto segue a Clean Architecture, separando as camadas de forma **independente e testável**:
 
 ```
+app/
 features/
 ├── home/
 │   ├── data/
@@ -228,21 +229,31 @@ git clone https://github.com/sabinabernardes/BinaRickAndMorty.git
 
 ## 🧪 Testes
 
-- Para rodar os testes unitários:
+Testes estão organizados por camada:
+
+- **Domain layer**: validação de regras de negócio com `MockK`
+- **Presentation layer**: testes de UI com `Compose Testing` e `Espresso`
+- **Data layer**: testes de fallback e falhas de rede com Retrofit
+
+Cobertura de testes segmentada por módulo.  
+Cobertura atual: **85% na camada de domínio, 70% no total**
+
+Comandos:
+
 ```bash
 ./gradlew test
-```
-
-- Para rodar os testes instrumentados:
-```bash
 ./gradlew connectedAndroidTest
-```
-
-Testes estão organizados por camada.  
-Cobertura de testes pode ser gerada via:
-```bash
 ./gradlew jacocoTestReport
 ```
+
+---
+
+## 📊 Monitoramento e Qualidade
+
+- Uso de **Firebase Crashlytics** e **Logcat estruturado**
+- Monitoramento de **ANRs e FPS** via Android Vitals
+- Logs com categorizações por feature e tipo de evento
+- Rollouts graduais com Feature Flags e staged rollout no Play Console
 
 ---
 
@@ -279,7 +290,10 @@ Cobertura de testes pode ser gerada via:
 
 | Home                       | Detalhe do Personagem           |
 |----------------------------|----------------------------------|
-| ![](docs/screenshot_home.png) | ![](docs/screenshot_detail.png) |
+| ![Captura de Tela 2025-06-28 às 13 53 36](https://github.com/user-attachments/assets/2020e3d5-6418-4527-a848-68e0d1573d20)
+ |
+|  ![Captura de Tela 2025-06-28 às 13 53 46](https://github.com/user-attachments/assets/6b37018e-668b-4bb3-89b6-e731558c4b38)
+|
 
 ---
 
@@ -292,6 +306,16 @@ Cobertura de testes pode ser gerada via:
 | `Kotlin Serialization`   | Evita reflection e é mais leve que Moshi/Gson                                |
 | Modularização por feature| Reduz acoplamento e melhora testabilidade/tempo de build                    |
 | Navegação via route      | Permite extensibilidade e modularização                                     |
+
+---
+
+## 🧯 Roadmap / Melhorias Futuras
+
+- [ ] Persistência offline com Room
+- [ ] Testes de screenshot com Paparazzi
+- [ ] Tela de favoritos
+- [ ] Lint customizado por domínio
+- [ ] CI com deploy para Play Internal Track
 
 ---
 
