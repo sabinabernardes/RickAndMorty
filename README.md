@@ -16,63 +16,154 @@ App Android em Jetpack Compose + Clean Architecture para exibir personagens da s
 
 ---
 
-## 🗂️ Estrutura do Projeto
+## 🧱 Estrutura do Projeto e Organização
+
+Este projeto foi pensado para ser modular, escalável e fácil de manter, seguindo os princípios de Clean Architecture, com divisão clara entre infraestrutura e features.
+
+### 📦 Organização dos Módulos
 
 ```
-RickyAndMorty/
-├── app/                   # Módulo Android principal
-├── core/
-│   ├── ui/                # Componentes UI genéricos
-│   ├── network/           # Retrofit, Moshi, interceptors
-│   └── model/             # Data classes comuns
-└── features/
-    ├── character_list/   # Listagem + Paging 3
-    └── character_detail/ # Tela de detalhe
+:app                       # App launcher
+:core:designsystem         # Tokens, componentes visuais, tema claro/escuro
+:core:navigation           # Gerenciamento de rotas e destinos
+:core:playground           # Tela interna para testes visuais dos componentes
+:features:home             # Tela principal (home) com Clean Architecture
+:features:detail           # Tela de detalhe com navegação via argumento
 ```
 
 ---
 
-## 🛠️ Tecnologias e Bibliotecas
+## 🏗️ Etapas de Implementação
 
-- ✅ **Jetpack Compose** – UI moderna
-- 🔄 **Navigation Compose** – Módulos screen-to-screen
-- 🧩 **Coroutines + Flow** – Fluxos reativos
-- 💉 **Koin** – Injeção de dependência leve
-- 📡 **Retrofit + Moshi** – Req/resp JSON
-- 📦 **Paging 3** – Anima lista infinita
-- 🖼️ **Coil** – Carregamento de imagens
-- 🧪 **JUnit + MockK** – Testes unitários
+### [Infraestrutura]
 
----
+#### ✅ 001 - Setup inicial
+- Estrutura base do projeto Android
+- Criação da pasta `.github/workflows` com GitHub Actions (CI)
+- Adição de Pull Request Template 
 
-## 📌 Decisões Técnicas
+#### ✅ 002 - Design System
+- Módulo `:core:designsystem` com tokens de cor, tipografia e espaçamento
+- Suporte a modo claro/escuro com Material3
+- Criação de componentes visuais reutilizáveis
+- Módulo `:core:playground` para testes visuais (debug only)
+- Testes instrumentados com `ComposeTestRule`
 
-- **Clean Architecture (simplificada)**:  
-  Domain → UseCases, Data → Repositories, Presentation → Compose/ViewModels.
-
-- **Modularização por feature**:  
-  Garante desacoplamento, build incremental e testes isolados.
-
-- **Estados explícitos**:  
-  Uso do `UiState` com Loading / Success / Error para clareza e previsibilidade.
-
-- **Teste early**:  
-  Planejado para unit tests e instrumented tests no futuro próximo.
+#### ✅ 003 - Navegação
+- Módulo `:core:navigation`
+- Abstrações para destinos (sealed classes ou rotas nomeadas)
+- Suporte a argumentos entre telas
+- Documentação dos ganhos (isolamento, preview, testes)
 
 ---
 
-## 🧩 Ordem de Implementação
+### [Features]
 
-1. Criação do projeto base com structure de módulos
-2. Setup Retrofit + Moshi e fetch da API
-3. UI inicial com Jetpack Compose + Theme Material3
-4. Listagem paginada com Paging 3
-5. Navegação screen-to-screen (list → detail)
-6. Implementação de Search por nome
-7. Carregamento de imagens com Coil
-8. Adição de estados (loading, error)
-9. Suporte a dark mode
-10. Preparação para testes + configuração de CI (GitHub Actions)
+#### ✅ 001 - Módulo de Home
+- Módulo `:features:home` com camadas `data`, `domain`, `presentation`
+- Tela Compose consumindo dados fictícios
+- Navegação para a tela de detalhes
+- Testes unitários e de UI por camada
+
+#### ✅ 002 - Módulo de Detalhes
+- Módulo `:features:detail` com mesmo padrão do Home
+- Recebimento de argumentos via navArgs
+- Reuso de componentes do design system
+- Cobertura de testes por camada
+
+---
+
+## 📋 Organização Detalhada de Branches e Tarefas
+
+O projeto é organizado com branches numeradas por escopo técnico, camada e contexto de entrega. Essa granularidade facilita o rastreio, revisão e merge de partes específicas da base.
+
+---
+
+### 🛠️ Infraestrutura
+
+#### `infra/001-project-setup`
+- Criação do projeto Android
+- Configuração inicial do Gradle e arquivos base (`README`, `.gitignore`)
+
+#### `infra/002-github-actions`
+- Configuração do CI com GitHub Actions (build, lint, test)
+
+#### `infra/003-pr-templates`
+- Adição de Pull Request e Issue templates na pasta `.github`
+
+#### `infra/004-core-navigation-module`
+- Criação do módulo `:core:navigation`
+- Definição de estrutura base de rotas
+
+#### `infra/005-core-designsystem-module`
+- Criação do módulo `:core:designsystem`
+
+#### `infra/006-designsystem-tokens`
+- Implementação dos tokens: colors, spacing, typography
+
+#### `infra/007-designsystem-theme`
+- Implementação do tema claro/escuro usando MaterialTheme
+
+#### `infra/008-designsystem-components`
+- Criação dos primeiros componentes reutilizáveis (Botão, TextField, etc.)
+
+#### `infra/009-playground-setup`
+- Criação do módulo `:core:playground`
+- Tela para visualização dos componentes
+
+#### `infra/010-ui-tests-setup`
+- Setup de testes instrumentados com `ComposeTestRule`
+- Testes visuais para Design System
+
+---
+
+### 🧩 Features
+
+#### 🏠 Home
+
+##### `feature/home/001-structure`
+- Criação do módulo `:features:home`
+- Separação das camadas: `data`, `domain`, `presentation`
+
+##### `feature/home/002-presentation-layer`
+- Composable da tela inicial
+- ViewModel + UiState
+
+##### `feature/home/003-domain-layer`
+- Casos de uso e modelos da camada de negócio
+
+##### `feature/home/004-data-layer`
+- Repositório, fake source/local data, DTOs
+
+##### `feature/home/005-tests`
+- Testes unitários e de UI por camada
+
+##### `feature/home/006-navigation`
+- Integração da tela com o NavGraph
+- Envio de ID para próxima tela
+
+---
+
+#### 📄 Detail
+
+##### `feature/detail/001-structure`
+- Módulo `:features:detail` com camadas Clean
+
+##### `feature/detail/002-presentation-layer`
+- Composable da tela de detalhes
+- ViewModel + estado com argumento
+
+##### `feature/detail/003-domain-layer`
+- Casos de uso, modelos, interfaces
+
+##### `feature/detail/004-data-layer`
+- Fonte de dados, mapeamento de dados, fake API
+
+##### `feature/detail/005-tests`
+- Testes unitários e de UI
+
+##### `feature/detail/006-navigation`
+- Recebimento e uso do argumento de navegação
 
 ---
 
@@ -90,15 +181,6 @@ RickyAndMorty/
 - Min SDK 26  
 - Target SDK 35  
 - JDK 17
-
----
-
-## 📈 Rumo ao Futuro
-
-- [ ] Cobertura de testes (unit + UI com ComposeTestRule)  
-- [ ] Implementar Favorites com Room  
-- [ ] Animações sutis (paginações, transições)  
-- [ ] Adicionar CI via GitHub Actions (build, test, lint)
 
 ---
 
