@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dialog_error_title">Algo deu errado</string>
+    <string name="dialog_error_retry">Tentar novamente\n</string>
+    <string name="dialog_error_close">Fechar</string>
+</resources>
