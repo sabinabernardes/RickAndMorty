@@ -19,6 +19,25 @@ Este app explora conceitos modernos do ecossistema Android, com destaque para:
 - 👩‍🔬 Navegação desacoplada com gerenciamento de estados
 
 ---
+## 🚀 Como rodar o projeto
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/sabinabernardes/BinaRickAndMorty.git
+```
+
+2. Abra no Android Studio Meerkat+  
+3. Rode com o **Emulador API 33+ ou dispositivo real**
+
+> 🔐 Este projeto não requer chaves de API — usa uma API pública.
+
+---
+**Requisitos**:  
+- Min SDK 26  
+- Target SDK 35  
+- JDK 17
+
+---
 
 ## 🧱 Estrutura do Projeto e Organização
 
@@ -213,20 +232,6 @@ Abaixo estão listadas as etapas do projeto junto com suas respectivas branches,
 
 ---
 
-## 🚀 Como rodar o projeto
-
-1. Clone o repositório:
-```bash
-git clone https://github.com/sabinabernardes/BinaRickAndMorty.git
-```
-
-2. Abra no Android Studio Hedgehog+  
-3. Rode com o **Emulador API 33+ ou dispositivo real**
-
-> 🔐 Este projeto não requer chaves de API — usa uma API pública.
-
----
-
 ## 🧪 Testes
 
 Testes estão organizados por camada:
@@ -266,13 +271,7 @@ Comandos:
 - Checagem de lint
 - [ ] *(se aplicável)* Deploy para Firebase App Distribution
 
----
-**Requisitos**:  
-- Min SDK 26  
-- Target SDK 35  
-- JDK 17
 
----
 ---
 
 ## 📱 Funcionalidades
