@@ -74,6 +74,8 @@ private fun TokensContent() {
             SpacingTokenSample("spacing16", SpacingTokens.spacing16)
             SpacingTokenSample("spacing24", SpacingTokens.spacing24)
             SpacingTokenSample("spacing32", SpacingTokens.spacing32)
+            SpacingTokenSample("spacing64", SpacingTokens.spacing64)
+            SpacingTokenSample("spacing128", SpacingTokens.spacing128)
         }
     }
 }
