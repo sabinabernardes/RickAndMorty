@@ -23,3 +23,4 @@ rootProject.name = "RickAndMorty"
 include(":app")
 include(":core:navigation")
 include(":core:designsystem")
+include(":core:playground")
