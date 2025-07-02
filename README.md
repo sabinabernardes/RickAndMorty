@@ -62,7 +62,6 @@ core/
 ├── network/
 ├── designsystem/
 ├── playground/
-├── ui/
 ├── navigation/
 ```
 
@@ -170,6 +169,10 @@ Abaixo estão listadas as etapas do projeto junto com suas respectivas branches,
 ### ✅ 010 - Testes instrumentados (`infra/010-ui-tests-setup`)
 - Setup de testes com `ComposeTestRule`
 - Testes visuais dos componentes
+
+### ✅ 011 - Modulo de Network (`infra/011-network-setup`)
+- Criar o modulo de `:core:network`
+- Montar os tratamentos das chamadas de rede do projeto
 
 </details>
 
