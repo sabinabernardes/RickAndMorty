@@ -53,10 +53,11 @@ dependencies {
     implementation(libs.compose.material3)
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.ui.test.junit4.android)
 
     // Preview e testes opcionais
     debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.junit.v115)
+    androidTestImplementation(libs.androidx.espresso.core.v350)
 }
