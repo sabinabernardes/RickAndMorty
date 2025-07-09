@@ -49,6 +49,7 @@ dependencies {
     implementation(libs.compose.runtime)
     implementation(libs.compose.viewmodel)
     implementation(libs.ui.tooling.preview.android)
+    implementation(libs.androidx.paging.common.android)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v350)

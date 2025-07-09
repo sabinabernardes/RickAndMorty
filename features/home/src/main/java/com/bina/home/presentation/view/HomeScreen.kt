@@ -1,4 +1,4 @@
-package com.bina.home.view
+package com.bina.home.presentation.view
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
