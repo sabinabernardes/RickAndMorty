@@ -1,34 +1,55 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.bina.features.home"
+    namespace = "com.bina.home"
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 24
+        minSdk = 28
         targetSdk = 35
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = "11"
+    }
+    buildFeatures {
+        compose = true
     }
 }
 
 dependencies {
-    implementation(project(":core:network"))
-    implementation(project(":core:desingsystem"))
-    // Dependências AndroidX essenciais
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("com.google.android.material:material:1.12.0")
-    // Dependências para ViewModel e LiveData
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.1")
-    // Dependência para Koin (injeção de dependência)
-    implementation("io.insert-koin:koin-android:3.5.6")
+    implementation(project(":core:designsystem"))
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.runtime.android)
+    implementation(libs.androidx.navigation.runtime.android)
+
+    // Compose
+    implementation(libs.compose.ui)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.viewmodel)
+    implementation(libs.ui.tooling.preview.android)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit.v115)
+    androidTestImplementation(libs.androidx.espresso.core.v350)
 }
