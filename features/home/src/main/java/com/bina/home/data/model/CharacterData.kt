@@ -1,9 +1,10 @@
-package com.bina.home.domain.model
+package com.bina.home.data.model
 
-data class CharacterDomain(
+data class CharacterData(
     val id: Int,
     val name: String,
     val status: String,
     val species: String,
-    val image: String,
+    val image: String
 )
+
