@@ -1,7 +1,7 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
@@ -10,36 +10,51 @@ android {
 
     defaultConfig {
         minSdk = 26
+        targetSdk = 35
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
     }
 
     buildFeatures {
         compose = true
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
 }
 
 dependencies {
     implementation(project(":core:designsystem"))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.runtime.android)
-    implementation(libs.androidx.navigation.runtime.android)
-
-    // Compose
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.compose.ui)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.activity.compose)
+    // Compose e Material 3
+    implementation(libs.androidx.compose.bom)
+    implementation(libs.androidx.ui.tooling)
     implementation(libs.compose.material3)
-    implementation(libs.compose.runtime)
-    implementation(libs.compose.viewmodel)
-    implementation(libs.ui.tooling.preview.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.ui.test.junit4.android)
+
+    // Preview e testes opcionais
+    debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v350)
