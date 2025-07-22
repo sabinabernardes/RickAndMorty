@@ -4,31 +4,21 @@ plugins {
 }
 
 android {
-    namespace = "com.bina.home"
+    namespace = "com.bina.features.home"
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 28
-        targetSdk = 35
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
+    buildFeatures {
+        compose = true
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
-    }
-    buildFeatures {
-        compose = true
     }
     kotlinOptions {
         jvmTarget = "11"
