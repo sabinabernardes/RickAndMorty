@@ -52,6 +52,8 @@ dependencies {
     implementation(libs.androidx.foundation.layout.android)
     implementation(libs.androidx.material.icons.extended)
     implementation(libs.androidx.ui.test.junit4.android)
+    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.paging.compose)
 
     // Preview e testes opcionais
     debugImplementation(libs.androidx.ui.tooling)
