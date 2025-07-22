@@ -1,17 +1,17 @@
 plugins {
-    alias(libs.plugins.android.library)
+    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
 }
 
 android {
-    namespace = "com.bina.home"
+    namespace = "com.bina.features.home"
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 28
+        minSdk = 26
         targetSdk = 35
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -23,13 +23,16 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     kotlinOptions {
         jvmTarget = "11"
     }
+
     buildFeatures {
         compose = true
     }
@@ -37,19 +40,21 @@ android {
 
 dependencies {
     implementation(project(":core:designsystem"))
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.runtime.android)
-    implementation(libs.androidx.navigation.runtime.android)
-
-    // Compose
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.compose.ui)
+    implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.activity.compose)
+    // Compose e Material 3
+    implementation(libs.androidx.compose.bom)
+    implementation(libs.androidx.ui.tooling)
     implementation(libs.compose.material3)
-    implementation(libs.compose.runtime)
-    implementation(libs.compose.viewmodel)
-    implementation(libs.ui.tooling.preview.android)
-    implementation(libs.androidx.paging.common.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.material.icons.extended)
+    implementation(libs.androidx.ui.test.junit4.android)
+
+    // Preview e testes opcionais
+    debugImplementation(libs.androidx.ui.tooling)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit.v115)
     androidTestImplementation(libs.androidx.espresso.core.v350)
