@@ -199,11 +199,15 @@ Abaixo estão listadas as etapas do projeto junto com suas respectivas branches,
 #### ✅ Repositório e dados (`feature/home/004-data-layer`)
 - Fonte de dados fake/local, DTOs, mappers
 
-#### ✅ Testes (`feature/home/005-tests`)
+#### ✅ UI e ViewModel (`feature/home/005-di-adjusting`)
+- Criar o Di e ajuste da camada de presentation
+- ViewModel + UiState
+
+#### ✅ Testes (`feature/home/006-tests`)
 - Testes unitários por camada
 - Testes de UI com Compose
 
-#### ✅ Navegação (`feature/home/006-navigation`)
+#### ✅ Navegação (`feature/home/007-navigation`)
 - Integração da Home com NavGraph
 - Envio de ID para próxima tela
 
