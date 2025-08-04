@@ -188,16 +188,16 @@ Abaixo estão listadas as etapas do projeto junto com suas respectivas branches,
 #### ✅ Estrutura inicial (`feature/home/001-structure`)
 - Criação do módulo `:features:home`
 - Separação das camadas: `data`, `domain`, `presentation`
-
-#### ✅ UI e ViewModel (`feature/home/002-presentation-layer`)
-- Composable da tela inicial
-- ViewModel + UiState
+- 
+#### ✅ Repositório e dados (`feature/home/002-data-layer`)
+- Fonte de dados fake/local, DTOs, mappers
 
 #### ✅ Casos de uso (`feature/home/003-domain-layer`)
 - Lógica de negócio e abstrações
 
-#### ✅ Repositório e dados (`feature/home/004-data-layer`)
-- Fonte de dados fake/local, DTOs, mappers
+#### ✅ UI e ViewModel (`feature/home/004-presentation-layer`)
+- Composable da tela inicial
+- ViewModel + UiState
 
 #### ✅ UI e ViewModel (`feature/home/005-di-adjusting`)
 - Criar o Di e ajuste da camada de presentation
