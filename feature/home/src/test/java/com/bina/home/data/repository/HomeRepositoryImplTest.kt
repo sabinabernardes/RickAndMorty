@@ -1,8 +1,10 @@
 package com.bina.home.data.repository
 
 import androidx.paging.PagingData
+import androidx.paging.PagingSource
 import com.bina.home.data.datasource.CharacterDataSource
 import com.bina.home.data.model.CharacterData
+import com.bina.home.data.pagingSouce.CharacterPagingSource
 import com.bina.home.domain.model.CharacterDomain
 import com.bina.home.domain.repository.HomeRepository
 import io.mockk.coEvery
@@ -42,16 +44,24 @@ class HomeRepositoryImplTest {
     }
 
     @Test
-    fun `given dataSource throws exception when getCharacters then emits error`() = runTest {
+    fun `given dataSource throws exception when load then returns LoadResult Error`() = runTest {
         // Given
+        val dataSource = mockk<CharacterDataSource>()
         coEvery { dataSource.getCharacters("", 1) } throws RuntimeException("API error")
 
+        val pagingSource = CharacterPagingSource(dataSource, "")
+
         // When
-        val flow = repository.getCharacters("")
-        val result = runCatching { flow.first() }
+        val result = pagingSource.load(
+            PagingSource.LoadParams.Refresh(
+                key = 1,
+                loadSize = 20,
+                placeholdersEnabled = false
+            )
+        )
 
         // Then
-        assertTrue(result.isFailure)
-        assertEquals("API error", result.exceptionOrNull()?.message)
+        assertTrue(result is PagingSource.LoadResult.Error)
+        assertEquals("API error", (result as PagingSource.LoadResult.Error).throwable.message)
     }
 }
