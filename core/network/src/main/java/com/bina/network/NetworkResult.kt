@@ -1,4 +1,4 @@
-package com.bina.network.result
+package com.bina.network
 
 sealed class NetworkResult<out T> {
     object Loading : NetworkResult<Nothing>()
@@ -7,4 +7,3 @@ sealed class NetworkResult<out T> {
     object Empty : NetworkResult<Nothing>()
     object Unauthorized : NetworkResult<Nothing>()
 }
-

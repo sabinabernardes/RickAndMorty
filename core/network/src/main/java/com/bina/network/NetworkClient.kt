@@ -21,6 +21,4 @@ object NetworkClient {
         .addConverterFactory(MoshiConverterFactory.create())
         .client(httpClient)
         .build()
-
-    val api: RickAndMortyApiService = retrofit.create(RickAndMortyApiService::class.java)
 }
